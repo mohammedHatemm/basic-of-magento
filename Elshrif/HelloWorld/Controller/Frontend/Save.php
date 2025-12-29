@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 namespace Elshrif\HelloWorld\Controller\Frontend;
-use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\Redirect;
@@ -31,7 +30,7 @@ class Save implements HttpPostActionInterface
             $data = $this->request->getPostValue();
             //the data you want to save it
 
-            $this->messageManager->addSuccessMessage(__('Your information has been updated.'));
+            $this->messageManager->addSuccessMessage(__('your data has been saved.'));
             $redirect->setPath('*/*/index');
             return $redirect;
         }
