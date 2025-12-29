@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router name="standard">
-        <route id="helloworld" frontName="helloworld">
+        <route id="frontend" frontName="frontend">
             <module name="Elsherif_HelloWorld"/>
         </route>
     </router>
