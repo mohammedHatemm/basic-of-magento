@@ -1,0 +1,13 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+        <table name="elshrif_loyalty_points" resource="default" engin="innodb" comment="Customr Loyakty point Balance">
+
+<!--            // primary key in the table-->
+            <column xsi:type="int" name="entity_id" nullable="false" identity="true" comment="Entity_id"/>
+<!--            // the cstomer id in the table-->
+                <column  xsi:type="int" name="customer_id" nullable="false" identity="true" comment="Customer_id"/>
+                <column xsi:type="int" name="points_balance" nullable="false" identity="true" comment=""
+
+        </table>
+</schema>
