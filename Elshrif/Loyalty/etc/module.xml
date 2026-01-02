@@ -2,10 +2,10 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
 
     <module name="Elshrif_Loyalty">
-        <sequance>
+        <sequence>
             <module name="Magento_Customer"/>
             <module name="Magento_Sales"/>
-        </sequance>
+        </sequence>
     </module>
 
 </config>
