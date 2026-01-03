@@ -6,7 +6,9 @@ namespace Elshrif\Loyalty\Api;
      * */
 
 use Elshrif\Loyalty\Api\Data\PointsInterface;
-use Elshrif\Loyalty\Model\PointsRepository;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 interface PointsRepositoryInterface
 {
@@ -95,7 +97,5 @@ interface PointsRepositoryInterface
      * @return  PointsInterface
      *
      */
-    public function getOrCreate(int $customerId ) : PointsInterface; 
-
-
+    public function getOrCreate(int $customerId): PointsInterface;
 }
