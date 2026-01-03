@@ -1,76 +1,154 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Elshrif\Loyalty\Model;
-use Magento\Catalog\Model\AbstractModel;
+
+use Magento\Framework\Model\AbstractModel;
+use Elshrif\Loyalty\Api\Data\PointsInterface;
 use Elshrif\Loyalty\Model\ResourceModel\Points as PointsResource;
 
 
-
-
-class Points extends AbstractModel
+class Points extends AbstractModel implements PointsInterface
 {
-   public const ENTITY_ID = 'entity_id';
-   public const CUSTOMER_ID = 'customer_id';
-   public const POINTS_BALANCE = 'points_balance';
-   public const TOTAL_EARNINGS = 'total_earnings';
-   public const TOTAL_SPENT = 'total_spent';
-   public const UPDATED_AT = 'updated_at';
-
-   protected function _construct()
-   {
-       $this->_init(PointsResource::class);
-
-   }
 
 
-   // getter function
+
+    public const CACH_TAG = 'elshrif_loyalty_points';
+
+    /**
+     * @var string
+     */
+    protected $_eventPrefix = 'elshrif_loyalty_points';
+
+
+    protected function _construct(): void
+    {
+
+        /**
+         * @param string $resourceModel
+         */
+        $this->_init(PointsResource::class);
+    }
+
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+
     public function getEntityId(): ?int
     {
         $value = $this->getData(self::ENTITY_ID);
-        return  $value!==null ? (int) $value : null;
-
+        return  $value !== null ? (int) $value : null;
     }
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
 
     public function getCustomerId(): ?int
     {
         $value = $this->getData(self::CUSTOMER_ID);
         return  $value !== null ? (int) $value : null;
     }
-    public function getPointsBalance(): ?int
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    public function getPointsBalance(): int
     {
-        return (int) $this->getData(self::POINTS_BALANCE ?? 0);
+        return (int) ($this->getData(self::POINTS_BALANCE) ?? 0);
     }
 
-    public function getTotalEarnings(): ?int
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+
+    public function getTotalEarned(): int
     {
-        return (int) $this->getData(self::TOTAL_EARNINGS ?? 0);
+        return (int) ($this->getData(self::TOTAL_EARNED) ?? 0);
     }
 
-    public function getTotalSpent(): ?int
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+
+    public function getTotalSpent(): int
     {
-        return (int) $this->getData(self::TOTAL_SPENT) ?? 0;
+        return (int) ($this->getData(self::TOTAL_SPENT) ?? 0);
     }
 
-    // setter function
 
-    public function setCustomerId(?int $customerId): Points
+
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    public function getUpdatedAt(): ?string
+    {
+        return $this->getData(self::UPDATED_AT);
+    }
+
+
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+
+    public function setCustomerId(?int $customerId): PointsInterface
     {
         return $this->setData(self::CUSTOMER_ID, $customerId);
     }
-    public function setPointsBalance(?int $pointsBalance): Points
-    {
-        return $this->setData(self::POINTS_BALANCE, $pointsBalance);
-    }
-    public function setTotalEarned(?int $total): Points
-    {
-        return $this->setData(self::TOTAL_EARNINGS, $total);
 
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    public function setPointsBalance(?int $balance): PointsInterface
+    {
+        return $this->setData(self::POINTS_BALANCE, $balance);
     }
-    public function setTotalSpent(?int $total): Points
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    public function setTotalEarend(?int $total): PointsInterface
+    {
+        return $this->setData(self::TOTAL_EARNED, $total);
+    }
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    public function setTotalSpent(?int $total): PointsInterface
     {
         return  $this->setData(self::TOTAL_SPENT, $total);
     }
 
-
+    /**
+     * @return array
+     */
+    public function getIdentities(): array
+    {
+        return [self::CACH_TAG . ' ' . $this->getId()];
+    }
 }
-
