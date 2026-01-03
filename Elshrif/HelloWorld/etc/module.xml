@@ -3,9 +3,9 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
 
     <module name="Elshrif_HelloWorld">
-        <sequance>
+        <sequence>
             <module name="Magento_Catalog"/>
             <module name="Magento_Customer"/>
-        </sequance>
+        </sequence>
     </module>
 </config>
