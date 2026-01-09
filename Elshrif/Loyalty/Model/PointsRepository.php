@@ -8,6 +8,7 @@ use Elshrif\Loyalty\Api\PointsRepositoryInterface;
 use Elshrif\Loyalty\Api\Data\PointsInterface;
 use Elshrif\Loyalty\Model\ResourceModel\Points as PointsResource;
 use Elshrif\Loyalty\Model\ResourceModel\Points\CollectionFactory;
+use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -20,6 +21,7 @@ class PointsRepository implements PointsRepositoryInterface
         private PointsFactory $pointsFactory,
         private PointsResource $pointsResource,
         private CollectionFactory $collectionFactory,
+        private CustomerRepositoryInterface $customerRepository,
         private LoggerInterface $logger
     ) {}
 
@@ -121,6 +123,17 @@ class PointsRepository implements PointsRepositoryInterface
      */
     public function addPoints(int $customerId, int $points, string $reason = ''): PointsInterface
     {
+        if($points<=0){
+            throw new localizedException(__('Points record must be greater than 0'));
+        }
+
+        try {
+            $this->customerRepository->getById($customerId);
+
+        }
+        catch (NoSuchEntityException $e) {
+            throw new LocalizedException(__('Customer with ID 1%  does not exist', $customerId));
+        }
         $pointsRecord = $this->getOrCreate($customerId);
 
         $newBalance = $pointsRecord->getPointsBalance() + $points;
@@ -147,6 +160,17 @@ class PointsRepository implements PointsRepositoryInterface
      */
     public function spendPoints(int $customerId, int $pointsToSpend, string $reason = ''): PointsInterface
     {
+
+        if($pointsToSpend<=0){
+            throw new LocalizedException(__('Points record must be greater than 0'));
+        }
+        try {
+            $this->customerRepository->getById($customerId);
+
+        }
+        catch (NoSuchEntityException $e) {
+            throw new LocalizedException(__('Customer with ID 1% does not exist ' . $customerId));
+        }
         $pointsRecord = $this->getOrCreate($customerId);
 
         if ($pointsRecord->getPointsBalance() < $pointsToSpend) {
