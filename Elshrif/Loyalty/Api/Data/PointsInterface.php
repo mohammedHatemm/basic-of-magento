@@ -27,15 +27,15 @@ interface PointsInterface
   /** @return int*/
 
 
-  public function getPointsBalance(): int;
+  public function getPointsBalance(): ?int;
 
   /** @return int*/
 
-  public function getTotalEarned(): int;
+  public function getTotalEarned(): ?int;
 
   /** @return int*/
 
-  public function getTotalSpent(): int;
+  public function getTotalSpent(): ?int;
 
 
   /**
