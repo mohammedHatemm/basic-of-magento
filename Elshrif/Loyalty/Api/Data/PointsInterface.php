@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Elshrif\Loyalty\Api\Data;
+use Magento\Framework\Exception\LocalizedException;
 
 interface PointsInterface
 {
@@ -17,24 +18,24 @@ interface PointsInterface
   /** @return int|null*/
 
 
-  public function getEntityId(): ?int;
+  public function getEntityId(): int;
 
   /** @return int*/
 
-  public function getCustomerId(): ?int;
+  public function getCustomerId(): int;
 
   /** @return int*/
 
 
-  public function getPointsBalance(): ?int;
+  public function getPointsBalance(): int;
 
   /** @return int*/
 
-  public function getTotalEarned(): ?int;
+  public function getTotalEarned(): int;
 
   /** @return int*/
 
-  public function getTotalSpent(): ?int;
+  public function getTotalSpent(): int;
 
 
   /**
@@ -43,7 +44,7 @@ interface PointsInterface
    */
 
 
-  public function getUpdatedAt(): ?string;
+  public function getUpdatedAt(): string;
 
   /**
    * Set Customer ID
@@ -60,11 +61,11 @@ interface PointsInterface
    *
    * set Points Balance
    * @param int $balance
-   * @return PointesInterfac
+   * @return PointsInterface
    *
    */
 
-  public function setPointsBalance(int $balance): ?PointsInterface;
+  public function setPointsBalance(int $balance): PointsInterface;
 
   /**
    *
@@ -74,12 +75,12 @@ interface PointsInterface
    * @return PointsInterface
    *
    */
-  public function setTotalEarend(int $total): ?PointsInterface;
+  public function setTotalEarned(int $total): PointsInterface;
 
   /**
    * set Total Spend
    * @param int $total
    * @return PointsInterface
    */
-  public function setTotalSpent(int $total): ?PointsInterface;
+  public function setTotalSpent(int $total): PointsInterface;
 }
