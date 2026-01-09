@@ -1,4 +1,13 @@
 <?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Elshrif\Loyalty\Model\Re"></type>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+        <virtualType name="Elshrif\Loyalty\Model\Points\Proxy" type="Elshrif\Loyalty\Model\Points"/>
+
+    <preference for="Elshrif\Loyalty\Api\PointsRepositoryInterface"  type="Elshrif\Loyalty\Model\PointsRepository"/>
+    <preference for="Elshrif\Loyalty\Api\Data\PointsInterface" name="Elshrif\Loyalty\Model\Points"/>
+
+
+
 </config>
