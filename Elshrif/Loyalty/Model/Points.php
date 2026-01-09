@@ -14,7 +14,7 @@ class Points extends AbstractModel implements PointsInterface
 
 
 
-    public const CACH_TAG = 'elshrif_loyalty_points';
+    public const CACHE_TAG = 'elshrif_loyalty_points';
 
     /**
      * @var string
@@ -38,10 +38,10 @@ class Points extends AbstractModel implements PointsInterface
      *
      */
 
-    public function getEntityId(): ?int
+    public function getEntityId(): int
     {
         $value = $this->getData(self::ENTITY_ID);
-        return  $value !== null ? (int) $value : null;
+        return  $value ;
     }
 
     /**
@@ -50,10 +50,10 @@ class Points extends AbstractModel implements PointsInterface
      *
      */
 
-    public function getCustomerId(): ?int
+    public function getCustomerId(): int
     {
         $value = $this->getData(self::CUSTOMER_ID);
-        return  $value !== null ? (int) $value : null;
+        return  $value ;
     }
 
     /**
@@ -61,7 +61,7 @@ class Points extends AbstractModel implements PointsInterface
      * {@inheritdoc}
      *
      */
-    public function getPointsBalance(): int
+    public function getPointsBalance(): ?int
     {
         return (int) ($this->getData(self::POINTS_BALANCE) ?? 0);
     }
@@ -73,7 +73,7 @@ class Points extends AbstractModel implements PointsInterface
      *
      */
 
-    public function getTotalEarned(): int
+    public function getTotalEarned(): ?int
     {
         return (int) ($this->getData(self::TOTAL_EARNED) ?? 0);
     }
@@ -85,7 +85,7 @@ class Points extends AbstractModel implements PointsInterface
      *
      */
 
-    public function getTotalSpent(): int
+    public function getTotalSpent(): ?int
     {
         return (int) ($this->getData(self::TOTAL_SPENT) ?? 0);
     }
@@ -98,7 +98,7 @@ class Points extends AbstractModel implements PointsInterface
      * {@inheritdoc}
      *
      */
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): string
     {
         return $this->getData(self::UPDATED_AT);
     }
@@ -111,7 +111,7 @@ class Points extends AbstractModel implements PointsInterface
      *
      */
 
-    public function setCustomerId(?int $customerId): PointsInterface
+    public function setCustomerId(int $customerId): PointsInterface
     {
         return $this->setData(self::CUSTOMER_ID, $customerId);
     }
@@ -121,7 +121,7 @@ class Points extends AbstractModel implements PointsInterface
      * {@inheritdoc}
      *
      */
-    public function setPointsBalance(?int $balance): PointsInterface
+    public function setPointsBalance(int $balance): PointsInterface
     {
         return $this->setData(self::POINTS_BALANCE, $balance);
     }
@@ -130,7 +130,7 @@ class Points extends AbstractModel implements PointsInterface
      * {@inheritdoc}
      *
      */
-    public function setTotalEarend(?int $total): PointsInterface
+    public function setTotalEarned(int $total): PointsInterface
     {
         return $this->setData(self::TOTAL_EARNED, $total);
     }
@@ -139,7 +139,7 @@ class Points extends AbstractModel implements PointsInterface
      * {@inheritdoc}
      *
      */
-    public function setTotalSpent(?int $total): PointsInterface
+    public function setTotalSpent(int $total): PointsInterface
     {
         return  $this->setData(self::TOTAL_SPENT, $total);
     }
@@ -149,6 +149,6 @@ class Points extends AbstractModel implements PointsInterface
      */
     public function getIdentities(): array
     {
-        return [self::CACH_TAG . ' ' . $this->getId()];
+        return [self::CACHE_TAG . ' ' . $this->getId()];
     }
 }
