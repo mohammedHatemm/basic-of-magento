@@ -38,12 +38,12 @@ class Collection extends AbstractCollection
      * @param int|array $customerIds
      * @return $this
      */
-    public function addCustomerFillter($customerIds): self
+    public function addCustomerFilter($customerIds): self
     {
         if (is_array($customerIds)) {
             $this->addFieldToFilter('customer_id', ['in' => $customerIds]);
         } else {
-            $this->addFieldToFilter('cutomer_id', $customerIds);
+            $this->addFieldToFilter('customer_id', $customerIds);
         }
         return $this;
     }
@@ -53,11 +53,11 @@ class Collection extends AbstractCollection
      *
      */
 
-    public function getToalPointsBalance(): int
+    public function getTotalPointsBalance(): int
     {
         $this->getSelect()
             ->reset(\Zend_Db_Select::COLUMNS)
-            ->columns(['total' => new \Zend_Db_Expr('SUM(Points_balance)')]);
+            ->columns(['total' => new \Zend_Db_Expr('SUM(points_balance)')]);
         return (int) $this->getConnection()->fetchOne($this->getSelect());
     }
 }
